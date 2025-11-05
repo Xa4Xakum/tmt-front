@@ -1,0 +1,110 @@
+.locations-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.locations-page h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.locations-tree {
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.location-item {
+  transition: background-color 0.2s ease;
+}
+
+.location-item:hover {
+  background-color: #f8f9fa;
+}
+
+.location-content {
+  --level-offset: calc(var(--level) * 32px);
+  
+  padding: 0.75rem 1.5rem;
+  padding-left: calc(var(--level-offset) + 1.5rem);
+  border-bottom: 1px solid #f0f0f0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.location-item:last-child .location-content {
+  border-bottom: none;
+}
+
+.location-name-container {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Занимаем всю доступную ширину */
+  gap: 0.75rem;
+}
+
+.location-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.expand-icon {
+  color: #7f8c8d;
+  font-size: 0.7rem;
+  min-width: 12px;
+  margin-left: 0;
+}
+
+/* ЦВЕТНЫЕ ПОЛОСКИ */
+.location-content::before {
+  content: '';
+  position: absolute;
+  left: var(--level-offset);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  border-radius: 2px;
+}
+
+/* Элементы БЕЗ детей - желтая полоска */
+.location-content:not(:has(+ .location-children .location-item))::before {
+  background-color: #f39c12;
+}
+
+/* Элементы С детьми - синяя полоска */
+.location-content:has(+ .location-children .location-item)::before {
+  background-color: #3498db;
+}
+
+/* Интерактивность */
+.location-name-container:hover .location-name {
+  color: #3498db;
+}
+
+.location-name-container:hover .expand-icon {
+  transform: scale(1.2);
+  color: #3498db;
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  .locations-page {
+    padding: 1rem;
+    max-width: 100%;
+  }
+  
+  .location-content {
+    padding: 0.75rem 1rem;
+    padding-left: calc(var(--level-offset) + 1rem);
+  }
+}
