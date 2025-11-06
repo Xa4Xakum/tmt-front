@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './style.css';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+  
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -13,9 +16,16 @@ const Footer: React.FC = () => {
         <div className="footer-section">
           <h3>Быстрые ссылки</h3>
           <ul className="footer-links">
-            <li><a href="#story">История</a></li>
-            <li><a href="#names">Наименования</a></li>
-            <li><a href="#locations">Локации</a></li>
+            <Link to="/locations" 
+              className={location.pathname === '/locations' ? 'nav-link active' : 'nav-link'}
+            >Локации</Link>
+            <br/>
+            <Link to="/categories" 
+              className={location.pathname === '/categories' ? 'nav-link active' : 'nav-link'}
+            >Категории</Link>
+            <Link to="/inventory" 
+              className={location.pathname === '/inventory' ? 'nav-link active' : 'nav-link'}
+            >ТМЦ</Link>
           </ul>
         </div>
         
