@@ -23,9 +23,14 @@ const Footer: React.FC = () => {
             <Link to="/categories" 
               className={location.pathname === '/categories' ? 'nav-link active' : 'nav-link'}
             >Категории</Link>
-            <Link to="/inventory" 
-              className={location.pathname === '/inventory' ? 'nav-link active' : 'nav-link'}
-            >ТМЦ</Link>
+            <br/>
+            <Link to="/inventory" className={location.pathname === '/inventory' ? 'nav-link active' : 'nav-link'}>
+              Список ТМЦ
+            </Link>
+            <br/>
+            <Link to="/inventory/add" className={location.pathname === '/inventory/add' ? 'nav-link active' : 'nav-link'}>
+              Добавить ТМЦ
+            </Link>
           </ul>
         </div>
         

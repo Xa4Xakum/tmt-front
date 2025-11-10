@@ -218,6 +218,40 @@
   margin-top: 0.25rem;
 }
 
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.alert-error {
+  background: #fff5f5;
+  border: 1px solid #ff6b6b;
+  color: #c92a2a;
+}
+
+.alert-success {
+  background: #f3fff3;
+  border: 1px solid #51cf66;
+  color: #2b8a3e;
+}
+
+/* Дополнительные стили для ошибок в форме */
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #ff6b6b;
+  background: #fff5f5;
+}
+
+.error-text {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: block;
+  margin-top: 0.25rem;
+}
+
 /* Улучшаем внешний вид поля поиска когда открыты подсказки */
 .search-container input:focus {
   border-bottom-left-radius: 0;

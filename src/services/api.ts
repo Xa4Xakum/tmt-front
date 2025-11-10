@@ -100,3 +100,63 @@ export const categoriesAPI = {
     return await response.json();
   },
 };
+
+export interface CreateInventoryItemData {
+  category_id: number;
+  location_id?: number | null;
+  serial_number?: string | null;
+  mac?: string | null;
+  ip_address?: string | null;
+  description?: string | null;
+}
+
+
+export interface InventoryItem {
+  id: number;
+  category_id: number;
+  location_id?: number | null;
+  serial_number?: string | null;
+  mac?: string | null;
+  ip_address?: string | null;
+  description?: string | null;
+  created_at: string;
+  category_name?: string; // Будем добавлять на бэкенде или фронтенде
+  location_name?: string; // Будем добавлять на бэкенде или фронтенде
+}
+
+
+export const inventoryItemsApi = {
+  createInventoryItem: async (inventoryData: CreateInventoryItemData): Promise<InventoryItem> => {
+    const response = await fetch(host + '/inventory_item/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inventoryData),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to create InventoryItem');
+    }
+    return await response.json();
+  },
+
+  getById: async (id: number): Promise<InventoryItem> => {
+    const response = await fetch(host + `/inventory_item/by_id?id=${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch InventoryItem');
+    }
+    return await response.json();
+  },
+
+  getInventoryItems: async (offset: number = 0, limit: number = 20): Promise<InventoryItem[]> => {
+    const response = await fetch(`${host}/inventory_item/list?offset=${offset}&limit=${limit}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch inventory items');
+    }
+    
+    const data = await response.json();
+    console.log('Ответ от /list:', data);
+    
+    return Array.isArray(data) ? data : [];
+  },
+};
